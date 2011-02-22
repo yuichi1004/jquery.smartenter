@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Smartenter Unit Test</title>
+  
+  <script language="javascript" type="text/javascript" src="./jquery-1.4.4.min.js"></script>
+  <script language="javascript" type="text/javascript" src="./smartenter.js"></script>
+</head>
+<body>
+	<h1>Smartenter Unit Test</h1>
+	<p>Javascript can catch the input of enter key by keyup event handler.  However, 
+	it is also triggered even while the user is transforming the text with IME (Input Method Editor).
+	It is serious problem with some languages include Japanese.</p>
+
+	<p>This smartenter event is not triggered while the user is transformaing with IME but triggered otherwise.</p>
+
+	<h1>Usage</h1>
+	<pre>
+	$('target').smartenter(function(){alert('Enter Pressed.');});
+	</pre>
+
+	<h1>Test and Example</h1>
+	<p>Display a message when the enter was pressed while the IME transformation is not activated. Test with Japanse input.</p>
+	<input id='tex' />
+	<div id='out' style='height: 300px; overflow-y: hidden;'>
+	</div>
+	<script language="javascript" type="text/javascript">
+		$('#tex').smartenter(function(){alert('Enter Pressed.')});
+
+		var key_press = function(ev) {
+			$('#out').prepend('keypress code:' + ev.which + '<br />');
+		};
+		$('#tex').keypress(key_press);
+		$('#tex').keyup( function(ev) {
+			$('#out').prepend('keyup code:' + ev.which + '<br />');
+		});
+	</script>
+	
+	<h1>License</h1>
+	You may use Smartenter under the MIT-License.
+	<h1>Reference</h1>
+	<ul>
+		<li><a href="http://hondou.homedns.org/pukiwiki/pukiwiki.php?Javascript%20IME%C6%FE%CE%CF%C3%E6%A4%CE%C8%BD%C4%EA">hondou.homedns.org (in Japanese)</a></li>
+	</ul>
+</body>
+</html>
+
